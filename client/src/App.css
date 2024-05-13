@@ -1,0 +1,65 @@
+body {
+  height: 100vh;
+}
+
+.ql-editor {
+  font-size: 1.05rem;
+}
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.post_content p {
+  margin-bottom: 0.5rem;
+}
+.post_content h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "san-serif";
+  margin: 1.5rem 0;
+}
+
+.post_content h2 {
+  font-size: 1.4rem;
+  font-family: "san-serif";
+  margin: 1.5rem 0;
+}
+
+.post_content a {
+  color: rgb(73, 149, 199);
+  text-decoration: none;
+}
+
+.post_content a:hover {
+  text-decoration: underline;
+}
+
+.slide-container {
+}
+.new-slide-container {
+  height: 200px;
+}
+
+.box {
+  animation-name: example;
+  animation-duration: 4s;
+}
+
+@keyframes example {
+  from {
+    bottom: -200px;
+    rotate: 180deg;
+    transform: scale(0.1);
+  }
+  to {
+    bottom: 0;
+    rotate: 0deg;
+    transform: scale(1);
+  }
+}
