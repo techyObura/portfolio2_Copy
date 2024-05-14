@@ -29,7 +29,7 @@ const Register = ({ menu }) => {
       return setErrorMessage("Passwords do not match");
     }
 
-    setFormData({ ...formData, password: pass });
+    setFormData({ ...formData, pass: password });
     try {
       setLoading(true);
       setErrorMessage(null);
@@ -66,12 +66,11 @@ const Register = ({ menu }) => {
     >
       <div className="flex md:flex-row px-2 gap-5 md:items-center mx-auto flex-col bg-[url('./alfred1.png')]  bg-no-repeat bg-contain bg-right-top sm:bg-none">
         {errorMessage && (
-          <Alert
-            className=" text-center self-center h-8 w-[97%] mt-1"
-            color={"failure"}
-          >
-            {errorMessage}
-          </Alert>
+          <div className=" text-center self-center h-8 w-[97%] mt-1">
+            <Alert className="" color={"failure"}>
+              {errorMessage}
+            </Alert>
+          </div>
         )}
         {/* Left */}
         <div className="flex-1 sm:pl-5">
