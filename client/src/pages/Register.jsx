@@ -66,7 +66,7 @@ const Register = ({ menu }) => {
     >
       <div className="flex md:flex-row px-2 gap-5 md:items-center mx-auto flex-col bg-[url('./alfred1.png')]  bg-no-repeat bg-contain bg-right-top sm:bg-none">
         {errorMessage && (
-          <Alert className="mt-1" color={"failure"}>
+          <Alert className="relative top-18 w-[97%] mt-1" color={"failure"}>
             {errorMessage}
           </Alert>
         )}
