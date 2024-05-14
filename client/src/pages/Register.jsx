@@ -21,17 +21,13 @@ const Register = ({ menu }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.username || !formData.email || !pass || !confirmPass) {
+    if (!formData.username || !formData.email || !formData.password) {
       return setErrorMessage("Please fill out all fields");
     }
 
-    if (pass !== confirmPass) {
-      return setErrorMessage("Passwords do not match");
-    }
-
-    setFormData({ ...formData, pass: password });
     try {
       setLoading(true);
+      console.log(formData);
       setErrorMessage(null);
       const res = await fetch(api_url, {
         method: "POST",
@@ -58,6 +54,7 @@ const Register = ({ menu }) => {
     setErrorMessage(null);
   }, 7000);
 
+  console.log(formData);
   return (
     <div
       className={`min-h-screen mt-16 relative top-16 sm:bg-[url('./alfred1.png')]  sm:bg-no-repeat sm:bg-auto sm:bg-left-top ${
@@ -65,13 +62,6 @@ const Register = ({ menu }) => {
       }`}
     >
       <div className="flex md:flex-row px-2 gap-5 md:items-center mx-auto flex-col bg-[url('./alfred1.png')]  bg-no-repeat bg-contain bg-right-top sm:bg-none">
-        {errorMessage && (
-          <div className=" text-center self-center mb-2 w-[97%] mt-1">
-            <Alert className="" color={"failure"}>
-              {errorMessage}
-            </Alert>
-          </div>
-        )}
         {/* Left */}
         <div className="flex-1 sm:pl-5">
           <Link
@@ -132,11 +122,11 @@ const Register = ({ menu }) => {
                 type="password"
                 placeholder="Password"
                 id="password"
-                onChange={(e) => setPass(e.target.value)}
+                onChange={handleChange}
                 autoComplete="current-password"
               />
             </div>
-            <div>
+            {/* <div>
               <Label value="Confirm password:" />
               <TextInput
                 type="password"
@@ -145,7 +135,7 @@ const Register = ({ menu }) => {
                 onChange={(e) => setConfirmPass(e.target.value)}
                 autoComplete="current-password"
               />
-            </div>
+            </div> */}
             <div className="w-full mt-3">
               <Button
                 className="w-full"
@@ -164,6 +154,13 @@ const Register = ({ menu }) => {
                 )}
               </Button>
             </div>
+            {errorMessage && (
+              <div className=" text-center self-center mb-2 w-[97%] mt-1">
+                <Alert className="" color={"failure"}>
+                  {errorMessage}
+                </Alert>
+              </div>
+            )}
             <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-3">
