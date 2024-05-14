@@ -12,11 +12,13 @@ const DashComments = () => {
   const [showMore, setShowMore] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [commentIdDeleted, setCommentIdDeleted] = useState(null);
+  const [loading, setLoading] = useState(false);
   const delete_api = `${api}/comments/deleteComment/${commentIdDeleted}`;
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
+        setLoading(true);
         const res = await fetch(fetchCommentsApi, {
           headers: { authorization: "Bearer " + currentUser.accessToken },
         });
@@ -24,14 +26,18 @@ const DashComments = () => {
 
         if (res.ok) {
           setComments(data.comments);
+          setLoading(false);
           console.log(data.comments);
 
           if (data.comments.length > 9) {
             setShowMore(true);
           }
+        } else {
+          setLoading(false);
         }
       } catch (error) {
         console.log(error.message);
+        setLoading(false);
       }
     };
     if (currentUser.isAdmin) {
@@ -80,6 +86,8 @@ const DashComments = () => {
       console.log(error.message);
     }
   };
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div className="table-auto overflow-x-scroll w-[85%] md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">

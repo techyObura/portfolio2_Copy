@@ -57,10 +57,10 @@ const DashSlider = () => {
   if (loading) return <p>Loading...</p>;
   console.log(userPosts);
   return (
-    <div className=" table-auto w-[85vw] overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className=" table-auto sm:w-[85vw] overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser.isAdmin && userPosts ? (
         <>
-          <Table hoverable className=" shadow-md">
+          <Table hoverable className=" w-full shadow-md">
             <Table.Head>
               <Table.HeadCell>Link to</Table.HeadCell>
               <Table.HeadCell>Slider Image</Table.HeadCell>
