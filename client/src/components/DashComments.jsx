@@ -90,7 +90,7 @@ const DashComments = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="table-auto overflow-x-scroll w-[85%] md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className="table-auto overflow-x-scroll md:w-[85%] md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser.isAdmin && comments && comments.length > 0 ? (
         <>
           <Table hoverable className=" shadow-md">
