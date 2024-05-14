@@ -65,6 +65,11 @@ const Register = ({ menu }) => {
       }`}
     >
       <div className="flex md:flex-row px-2 gap-5 md:items-center mx-auto flex-col bg-[url('./alfred1.png')]  bg-no-repeat bg-contain bg-right-top sm:bg-none">
+        {errorMessage && (
+          <Alert className="mt-1" color={"failure"}>
+            {errorMessage}
+          </Alert>
+        )}
         {/* Left */}
         <div className="flex-1 sm:pl-5">
           <Link
@@ -165,11 +170,6 @@ const Register = ({ menu }) => {
               Sign In
             </Link>
           </div>
-          {errorMessage && (
-            <Alert className="mt-1" color={"failure"}>
-              {errorMessage}
-            </Alert>
-          )}
         </div>
       </div>
     </div>
