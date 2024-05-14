@@ -162,14 +162,14 @@ const UpdatePost = ({ menu }) => {
             value={formData.category}
           >
             <option value="uncategorized">Select a category</option>
-            <option value="html">Life</option>
-            <option value="css">programming</option>
-            <option value="javascript">Hobby</option>
-            <option value="reactjs">Event</option>
-            <option value="nextjs">Experience</option>
-            <option value="expressjs">Education</option>
-            <option value="nodejs">Engineering</option>
-            <option value="brainjs">Technology</option>
+            <option value="life">Life</option>
+            <option value="programming">programming</option>
+            <option value="hobby">Hobby</option>
+            <option value="event">Event</option>
+            <option value="experience">Experience</option>
+            <option value="education">Education</option>
+            <option value="engineering">Engineering</option>
+            <option value="technology">Technology</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-center border-4 border-teal-500 border-dotted p-3 mt-2">
