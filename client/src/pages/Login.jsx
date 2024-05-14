@@ -53,7 +53,7 @@ const Login = ({ menu }) => {
   return (
     <div
       className={`min-h-screen mt-16 relative sm:bg-[url('./alfred1.png')]  sm:bg-no-repeat sm:bg-auto sm:bg-left-top   ${
-        menu ? "top-[35vw] sm:top-16" : "top-14"
+        menu ? "top-[40vw] sm:top-16" : "top-14"
       }`}
     >
       <div className="flex md:flex-row px-2 gap-5 md:items-center mx-auto flex-col bg-[url('./alfred1.png')]  bg-no-repeat bg-contain bg-right-top sm:bg-none">
