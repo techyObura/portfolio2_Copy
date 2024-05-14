@@ -13,13 +13,10 @@ import verifyToken from "./middleware/verifyToken.js";
 import backRoutes from "./routes/back.route.js";
 import sliderRoutes from "./routes/slider.route.js";
 import projectRoutes from "./routes/project.route.js";
-import path from "path";
 
 dotenv.config();
 const app = express();
 connectDB();
-
-const __dirname = path.resolve();
 
 //middleware
 app.use(express.json());
@@ -76,10 +73,6 @@ app.get("/api/comment/get", verifyToken, async (req, res, next) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, "/client/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
 //error Middleware
 
 app.use((err, req, res, next) => {
