@@ -12,22 +12,28 @@ const DashPosts = () => {
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [postIdDeleted, setPostIdDeleted] = useState(null);
+  const [loading, setLoading] = useState(false);
   const deletePostApi = `${api}/posts/delete/${postIdDeleted}/${currentUser._id}`;
   useEffect(() => {
     const fetchPost = async () => {
+      setLoading(true);
       try {
         const res = await fetch(fetchPostApi);
         const data = await res.json();
 
         if (res.ok) {
           setUserPosts(data.posts);
+          setLoading(false);
 
           if (data.posts.length < 6) {
             setShowMore(false);
           }
+        } else {
+          setLoading(false);
         }
       } catch (error) {
         console.log(error.message);
+        setLoading(false);
       }
     };
     if (currentUser.isAdmin) {
@@ -75,78 +81,84 @@ const DashPosts = () => {
   };
   return (
     <div className=" table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-      {currentUser.isAdmin && userPosts.length > 0 ? (
-        <>
-          <Table hoverable className=" shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Date Updated</Table.HeadCell>
-              <Table.HeadCell>Post Image</Table.HeadCell>
-              <Table.HeadCell>Post Title</Table.HeadCell>
-              <Table.HeadCell>Category</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
-            </Table.Head>
-            {userPosts.map((post) => (
-              <Table.Body key={post._id} className=" divide-y">
-                <Table.Row className=" bg-white dark:border-x-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    {new Date(post.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link to={`/posts/${post.slug}`}>
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className=" w-20 h-10 object-cover bg-gray-500"
-                      />
-                    </Link>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      to={`/posts/${post.slug}`}
-                      className=" text-gray-900 dark:text-white"
-                    >
-                      {post.title}
-                    </Link>
-                  </Table.Cell>
-                  <Table.Cell>{post.category}</Table.Cell>
-                  <Table.Cell className=" cursor-pointer">
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setPostIdDeleted(post._id);
-                      }}
-                      className="font-medium text-red-500 hover:underline"
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell className=" cursor-pointer">
-                    <Link
-                      to={`/update-post/${post._id}`}
-                      className="text-teal-500"
-                    >
-                      <span className=" hover:underline">Edit</span>
-                    </Link>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
-          {showMore && (
-            <button
-              onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-5"
-            >
-              Show more...
-            </button>
-          )}
-        </>
+      {loading ? (
+        <p>Loading...</p>
       ) : (
         <>
-          <p>Dear {currentUser.username}, you have no post</p>
+          {currentUser.isAdmin && userPosts.length > 0 ? (
+            <>
+              <Table hoverable className=" shadow-md">
+                <Table.Head>
+                  <Table.HeadCell>Date Updated</Table.HeadCell>
+                  <Table.HeadCell>Post Image</Table.HeadCell>
+                  <Table.HeadCell>Post Title</Table.HeadCell>
+                  <Table.HeadCell>Category</Table.HeadCell>
+                  <Table.HeadCell>Delete</Table.HeadCell>
+                  <Table.HeadCell>
+                    <span>Edit</span>
+                  </Table.HeadCell>
+                </Table.Head>
+                {userPosts.map((post) => (
+                  <Table.Body key={post._id} className=" divide-y">
+                    <Table.Row className=" bg-white dark:border-x-gray-700 dark:bg-gray-800">
+                      <Table.Cell>
+                        {new Date(post.updatedAt).toLocaleDateString()}
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Link to={`/posts/${post.slug}`}>
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className=" w-20 h-10 object-cover bg-gray-500"
+                          />
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Link
+                          to={`/posts/${post.slug}`}
+                          className=" text-gray-900 dark:text-white"
+                        >
+                          {post.title}
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell>{post.category}</Table.Cell>
+                      <Table.Cell className=" cursor-pointer">
+                        <span
+                          onClick={() => {
+                            setShowModal(true);
+                            setPostIdDeleted(post._id);
+                          }}
+                          className="font-medium text-red-500 hover:underline"
+                        >
+                          Delete
+                        </span>
+                      </Table.Cell>
+                      <Table.Cell className=" cursor-pointer">
+                        <Link
+                          to={`/update-post/${post._id}`}
+                          className="text-teal-500"
+                        >
+                          <span className=" hover:underline">Edit</span>
+                        </Link>
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                ))}
+              </Table>
+              {showMore && (
+                <button
+                  onClick={handleShowMore}
+                  className="w-full text-teal-500 self-center text-sm py-5"
+                >
+                  Show more...
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <p>Dear {currentUser.username}, you have no post</p>
+            </>
+          )}
         </>
       )}
 

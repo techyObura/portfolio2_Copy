@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Modal, TextInput } from "flowbite-react";
+import { Alert, Button, Modal, Spinner, TextInput } from "flowbite-react";
 import {
   HiAnnotation,
   HiArrowNarrowUp,
@@ -18,9 +18,11 @@ const DashProjects = () => {
   const [showModal, setShowModal] = useState(false);
   const [projectIdDeleted, setProjectIdDeleted] = useState(null);
   const deleteProjectApi = `${api}/projects/deleteProject/${projectIdDeleted}`;
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        setLoading(true);
         const res = await fetch(fetchProjectsApi);
         const data = await res.json();
 
@@ -28,9 +30,11 @@ const DashProjects = () => {
           setProjects(data.projects);
           setLastMonthProjects(data.lastMonthProjects);
           setTotalProjects(data.totalProjects);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error.message);
+        setLoading(false);
       }
     };
     if (currentUser) {
@@ -84,80 +88,86 @@ const DashProjects = () => {
           </div>
         </div>
       </>
-      {projects.length > 0 ? (
-        <>
-          <Table hoverable className=" shadow-md md:w-[50vw] mt-5 md:mt-0 ">
-            <Table.Head>
-              <Table.HeadCell>Date Updated</Table.HeadCell>
-              <Table.HeadCell>Project Image</Table.HeadCell>
-              <Table.HeadCell>Project Title</Table.HeadCell>
-              <Table.HeadCell>Status</Table.HeadCell>
-              {currentUser.isAdmin && (
-                <>
-                  <Table.HeadCell>Delete</Table.HeadCell>
-                  <Table.HeadCell>
-                    <span>Edit</span>
-                  </Table.HeadCell>
-                </>
-              )}
-            </Table.Head>
-            {projects.map((project) => (
-              <Table.Body key={project._id} className=" divide-y">
-                <Table.Row className=" bg-white dark:border-x-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    {new Date(project.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link to={project.url}>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className=" w-20 h-10 object-cover bg-gray-500"
-                      />
-                    </Link>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      to={project.url}
-                      className=" text-gray-900 dark:text-white"
-                    >
-                      {project.title}
-                    </Link>
-                  </Table.Cell>
-                  <Table.Cell className=" text-gray-900 dark:text-white">
-                    {project.isComplete ? "Completed" : "Incomplete"}
-                  </Table.Cell>
-                  {currentUser.isAdmin && (
-                    <>
-                      <Table.Cell className=" cursor-pointer">
-                        <span
-                          onClick={() => {
-                            setShowModal(true);
-                            setProjectIdDeleted(project._id);
-                          }}
-                          className="font-medium text-red-500 hover:underline"
-                        >
-                          Delete
-                        </span>
-                      </Table.Cell>
-                      <Table.Cell className=" cursor-pointer">
-                        <Link
-                          to={`/update-project/${project._id}`}
-                          className="text-teal-500"
-                        >
-                          <span className=" hover:underline">Edit</span>
-                        </Link>
-                      </Table.Cell>
-                    </>
-                  )}
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
-        </>
+      {loading ? (
+        <p>Loading...</p>
       ) : (
         <>
-          <p> no project</p>
+          {projects.length > 0 ? (
+            <>
+              <Table hoverable className=" shadow-md md:w-[50vw] mt-5 md:mt-0 ">
+                <Table.Head>
+                  <Table.HeadCell>Date Updated</Table.HeadCell>
+                  <Table.HeadCell>Project Image</Table.HeadCell>
+                  <Table.HeadCell>Project Title</Table.HeadCell>
+                  <Table.HeadCell>Status</Table.HeadCell>
+                  {currentUser.isAdmin && (
+                    <>
+                      <Table.HeadCell>Delete</Table.HeadCell>
+                      <Table.HeadCell>
+                        <span>Edit</span>
+                      </Table.HeadCell>
+                    </>
+                  )}
+                </Table.Head>
+                {projects.map((project) => (
+                  <Table.Body key={project._id} className=" divide-y">
+                    <Table.Row className=" bg-white dark:border-x-gray-700 dark:bg-gray-800">
+                      <Table.Cell>
+                        {new Date(project.updatedAt).toLocaleDateString()}
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Link to={project.url}>
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className=" w-20 h-10 object-cover bg-gray-500"
+                          />
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Link
+                          to={project.url}
+                          className=" text-gray-900 dark:text-white"
+                        >
+                          {project.title}
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell className=" text-gray-900 dark:text-white">
+                        {project.isComplete ? "Completed" : "Incomplete"}
+                      </Table.Cell>
+                      {currentUser.isAdmin && (
+                        <>
+                          <Table.Cell className=" cursor-pointer">
+                            <span
+                              onClick={() => {
+                                setShowModal(true);
+                                setProjectIdDeleted(project._id);
+                              }}
+                              className="font-medium text-red-500 hover:underline"
+                            >
+                              Delete
+                            </span>
+                          </Table.Cell>
+                          <Table.Cell className=" cursor-pointer">
+                            <Link
+                              to={`/update-project/${project._id}`}
+                              className="text-teal-500"
+                            >
+                              <span className=" hover:underline">Edit</span>
+                            </Link>
+                          </Table.Cell>
+                        </>
+                      )}
+                    </Table.Row>
+                  </Table.Body>
+                ))}
+              </Table>
+            </>
+          ) : (
+            <>
+              <p> no project</p>
+            </>
+          )}
         </>
       )}
 

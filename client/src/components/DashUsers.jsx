@@ -12,10 +12,12 @@ const DashUsers = () => {
   const [showMore, setShowMore] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [userIdDeleted, setUserIdDeleted] = useState(null);
+  const [loading, setLoading] = useState(false);
   const delete_api = `${api}/users/delete/${currentUser._id}/${userIdDeleted}`;
   useEffect(() => {
     const fetchPost = async () => {
       try {
+        setLoading(true);
         const res = await fetch(fetchUsersApi, {
           headers: { authorization: "Bearer " + currentUser.accessToken },
         });
@@ -23,12 +25,16 @@ const DashUsers = () => {
 
         if (res.ok) {
           setUsers(data.users);
+          setLoading(false);
 
           if (data.users.length > 9) {
             setShowMore(true);
           }
+        } else {
+          setLoading(false);
         }
       } catch (error) {
+        setLoading(false);
         console.log(error.message);
       }
     };
@@ -78,71 +84,77 @@ const DashUsers = () => {
   };
   return (
     <div className=" table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-      {currentUser.isAdmin && users.length > 0 ? (
-        <>
-          <Table hoverable className=" shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Date Created</Table.HeadCell>
-              <Table.HeadCell>User Image</Table.HeadCell>
-              <Table.HeadCell>Username</Table.HeadCell>
-              <Table.HeadCell>Email</Table.HeadCell>
-              <Table.HeadCell>Admin</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-            </Table.Head>
-            {users.map((user) => (
-              <Table.Body key={user._id} className=" divide-y">
-                <Table.Row className=" bg-white dark:border-x-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    {new Date(user.createdAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <img
-                      src={user.profilePhoto}
-                      alt={user.username}
-                      className=" w-9 h-9 lg:w-14 lg:h-14 rounded-full object-cover bg-gray-500"
-                    />
-                  </Table.Cell>
-                  <Table.Cell className=" text-gray-900 dark:text-white">
-                    {user.username}
-                  </Table.Cell>
-                  <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>
-                    {user.isAdmin ? (
-                      <FaCheck className="text-green-500" />
-                    ) : (
-                      <FaTimes className="text-red-500" />
-                    )}
-                  </Table.Cell>
-                  <Table.Cell className=" cursor-pointer">
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setUserIdDeleted(user._id);
-                      }}
-                      className="font-medium text-red-500 hover:underline"
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
-          {showMore && (
-            <button
-              onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-5"
-            >
-              Show more...
-            </button>
-          )}
-        </>
+      {loading ? (
+        <p>Loading...</p>
       ) : (
         <>
-          <p>
-            Dear <span className=" capitalize">{currentUser.username}</span>,
-            you have no users
-          </p>
+          {currentUser.isAdmin && users.length > 0 ? (
+            <>
+              <Table hoverable className=" shadow-md">
+                <Table.Head>
+                  <Table.HeadCell>Date Created</Table.HeadCell>
+                  <Table.HeadCell>User Image</Table.HeadCell>
+                  <Table.HeadCell>Username</Table.HeadCell>
+                  <Table.HeadCell>Email</Table.HeadCell>
+                  <Table.HeadCell>Admin</Table.HeadCell>
+                  <Table.HeadCell>Delete</Table.HeadCell>
+                </Table.Head>
+                {users.map((user) => (
+                  <Table.Body key={user._id} className=" divide-y">
+                    <Table.Row className=" bg-white dark:border-x-gray-700 dark:bg-gray-800">
+                      <Table.Cell>
+                        {new Date(user.createdAt).toLocaleDateString()}
+                      </Table.Cell>
+                      <Table.Cell>
+                        <img
+                          src={user.profilePhoto}
+                          alt={user.username}
+                          className=" w-9 h-9 lg:w-14 lg:h-14 rounded-full object-cover bg-gray-500"
+                        />
+                      </Table.Cell>
+                      <Table.Cell className=" text-gray-900 dark:text-white">
+                        {user.username}
+                      </Table.Cell>
+                      <Table.Cell>{user.email}</Table.Cell>
+                      <Table.Cell>
+                        {user.isAdmin ? (
+                          <FaCheck className="text-green-500" />
+                        ) : (
+                          <FaTimes className="text-red-500" />
+                        )}
+                      </Table.Cell>
+                      <Table.Cell className=" cursor-pointer">
+                        <span
+                          onClick={() => {
+                            setShowModal(true);
+                            setUserIdDeleted(user._id);
+                          }}
+                          className="font-medium text-red-500 hover:underline"
+                        >
+                          Delete
+                        </span>
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                ))}
+              </Table>
+              {showMore && (
+                <button
+                  onClick={handleShowMore}
+                  className="w-full text-teal-500 self-center text-sm py-5"
+                >
+                  Show more...
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <p>
+                Dear <span className=" capitalize">{currentUser.username}</span>
+                , you have no users
+              </p>
+            </>
+          )}
         </>
       )}
 
