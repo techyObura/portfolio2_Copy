@@ -162,14 +162,14 @@ const UpdatePost = ({ menu }) => {
             value={formData.category}
           >
             <option value="uncategorized">Select a category</option>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="javascript">JavaScript</option>
-            <option value="reactjs">React.js</option>
-            <option value="nextjs">Next.js</option>
-            <option value="expressjs">Express.js</option>
-            <option value="nodejs">Node.js</option>
-            <option value="brainjs">Brain.js</option>
+            <option value="html">Life</option>
+            <option value="css">programming</option>
+            <option value="javascript">Hobby</option>
+            <option value="reactjs">Event</option>
+            <option value="nextjs">Experience</option>
+            <option value="expressjs">Education</option>
+            <option value="nodejs">Engineering</option>
+            <option value="brainjs">Technology</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-center border-4 border-teal-500 border-dotted p-3 mt-2">
@@ -212,6 +212,7 @@ const UpdatePost = ({ menu }) => {
           placeholder="Write something..."
           className="h-72 mt-2 mb-12"
           required
+          value={formData.content}
           onChange={(e) =>
             setFormData({ ...formData, content: e.target.value })
           }
