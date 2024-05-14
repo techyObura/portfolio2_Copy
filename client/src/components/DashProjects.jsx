@@ -39,6 +39,7 @@ const DashProjects = () => {
   }, [currentUser._id]);
 
   const handleDeletePost = async () => {
+    setShowModal(false);
     try {
       const res = await fetch(deleteProjectApi, {
         method: "DELETE",
