@@ -126,7 +126,11 @@ const Header = ({ menu, setMenu }) => {
             About
           </Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/projects"} as={"div"}>
+        <Navbar.Link
+          active={path === "/projects"}
+          as={"div"}
+          onClick={() => setMenu(false)}
+        >
           <Link
             to={"/projects"}
             className="text-lg"
