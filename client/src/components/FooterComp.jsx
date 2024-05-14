@@ -36,13 +36,17 @@ const FooterComp = ({ menu }) => {
               <Footer.Title title="About" />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="https://alfreds-bet-prediction-site.netlify.app/"
+                  href="/projects"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Alfred Bet Prediction
+                  Capabilities
                 </Footer.Link>
-                <Footer.Link href="/" target="_blank" rel="noopener noreferrer">
+                <Footer.Link
+                  href="/about"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Alfred Ochieng
                 </Footer.Link>
               </Footer.LinkGroup>
@@ -54,13 +58,25 @@ const FooterComp = ({ menu }) => {
             >
               <Footer.Title title="Follow us" />
               <Footer.LinkGroup col>
-                <Footer.Link href="#" target="_blank" rel="noopener noreferrer">
+                <Footer.Link
+                  href="https://www.linkedin.com/in/software-developer-alfred-ochieng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   LinkedIn
                 </Footer.Link>
-                <Footer.Link href="/" target="_blank" rel="noopener noreferrer">
+                <Footer.Link
+                  href="https://www.facebook.com/software.engineer.87426?mibextid=ZbWKwL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Facebook
                 </Footer.Link>
-                <Footer.Link href="/" target="_blank" rel="noopener noreferrer">
+                <Footer.Link
+                  href="https://discord.com/channels/@me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Discord
                 </Footer.Link>
               </Footer.LinkGroup>
