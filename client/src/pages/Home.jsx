@@ -42,7 +42,7 @@ const Home = ({ menu }) => {
   return (
     <div
       className={` min-h-[100vh]  relative ${
-        menu ? "top-[46vw] sm:top-16" : "top-16"
+        menu ? "top-[48vw] sm:top-16" : "top-16"
       }`}
     >
       {slides.length > 0 ? (
