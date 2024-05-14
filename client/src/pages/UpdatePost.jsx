@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import {
+  Alert,
+  Button,
+  FileInput,
+  Select,
+  TextInput,
+  Textarea,
+} from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import {
@@ -201,14 +208,15 @@ const UpdatePost = ({ menu }) => {
             className="w-full h-72 sm:h-[50vh] object-cover object-top"
           />
         )}
-        <ReactQuill
-          theme="snow"
+        <Textarea
           placeholder="Write something..."
           className="h-72 mt-2 mb-12"
           required
-          onChange={(value) => setFormData({ ...formData, content: value })}
-          value={formData.content}
+          onChange={(e) =>
+            setFormData({ ...formData, content: e.target.value })
+          }
         />
+
         <Button
           type="submit"
           gradientDuoTone={"purpleToPink"}
