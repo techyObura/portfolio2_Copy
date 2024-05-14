@@ -13,8 +13,8 @@ const FooterComp = ({ menu }) => {
       container
       className={`border-t-8 border-teal-500  relative ${
         menu
-          ? "top-[70vw] md:top-32 lg:top-32"
-          : "top-[50vw] md:top-32 lg:top-32"
+          ? "top-[70vw] md:top-64 lg:top-64"
+          : "top-[50vw] md:top-64 lg:top-64"
       }`}
     >
       <div className="w-full max-w-7xl mx-auto">
