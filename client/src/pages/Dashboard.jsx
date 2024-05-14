@@ -21,7 +21,7 @@ const Dashboard = ({ menu }) => {
   return (
     <div
       className={`min-h-[100vh] flex flex-col md:flex-row relative  ${
-        menu ? "top-[46vw] md:top-32 lg:top-20" : "top-20 md:top-32 lg:top-20"
+        menu ? "top-[48vw] md:top-32 lg:top-20" : "top-20 md:top-32 lg:top-20"
       } `}
     >
       <div className=" md:w-56">
