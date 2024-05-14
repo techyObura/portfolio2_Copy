@@ -118,7 +118,7 @@ const DashProjects = () => {
                   </Table.Cell>
                   <Table.Cell>
                     <Link
-                      to={`/posts/${project.url}`}
+                      to={project.url}
                       className=" text-gray-900 dark:text-white"
                     >
                       {project.title}
