@@ -112,12 +112,20 @@ const Header = ({ menu, setMenu }) => {
       </div>
 
       <Navbar.Collapse>
-        <Navbar.Link active={path === "/"} as={"div"}>
+        <Navbar.Link
+          active={path === "/"}
+          as={"div"}
+          onClick={() => setMenu(false)}
+        >
           <Link to={"/"} className="text-lg" onClick={() => setMenu(false)}>
             Home
           </Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/about"} as={"div"}>
+        <Navbar.Link
+          active={path === "/about"}
+          as={"div"}
+          onClick={() => setMenu(false)}
+        >
           <Link
             to={"/about"}
             className="text-lg"
