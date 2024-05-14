@@ -101,7 +101,7 @@ const Login = ({ menu }) => {
             </div>
 
             <div>
-              <Label value="You password:" />
+              <Label value="Your password:" />
               <TextInput
                 type="password"
                 placeholder="Password"

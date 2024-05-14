@@ -11,6 +11,8 @@ const Register = ({ menu }) => {
   const [success, setSuccess] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [pass, setPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -19,10 +21,15 @@ const Register = ({ menu }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.username || !formData.password || !formData.email) {
+    if (!formData.username || !formData.email || !pass || !confirmPass) {
       return setErrorMessage("Please fill out all fields");
     }
 
+    if (pass !== confirmPass) {
+      return setErrorMessage("Passwords do not match");
+    }
+
+    setFormData({ ...formData, password: pass });
     try {
       setLoading(true);
       setErrorMessage(null);
@@ -113,12 +120,22 @@ const Register = ({ menu }) => {
             </div>
 
             <div>
-              <Label value="You password:" />
+              <Label value="Your password:" />
               <TextInput
                 type="password"
                 placeholder="Password"
                 id="password"
-                onChange={handleChange}
+                onChange={(e) => setPass(e.target.value)}
+                autoComplete="current-password"
+              />
+            </div>
+            <div>
+              <Label value="Confirm password:" />
+              <TextInput
+                type="password"
+                placeholder="Confirm password"
+                id="confirm_password"
+                onChange={(e) => setConfirmPass(e.target.value)}
                 autoComplete="current-password"
               />
             </div>
