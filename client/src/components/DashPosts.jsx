@@ -68,7 +68,6 @@ const DashPosts = () => {
         setUserPosts((prev) =>
           prev.filter((post) => post._id !== postIdDeleted)
         );
-        window.location.reload();
       }
     } catch (error) {
       console.log(error.message);
