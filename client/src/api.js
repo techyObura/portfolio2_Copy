@@ -1,3 +1,3 @@
-const api = "http://localhost:7000/api";
+const api = "https://portfolio2-copy.onrender.com/api";
 
 export default api;
