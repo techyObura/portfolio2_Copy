@@ -37,7 +37,7 @@ const SearchPage = ({ menu }) => {
         {path === "/all-posts" && (
           <div
             className={` fixed py-1  w-[100vw] md:w-[90vw] rounded-md shadow-md h-[1px] pb-1 bg-gray-200 dark:bg-teal-500 z-10 ${
-              menu ? "top-[50vw] md:top-[70px]" : "top-[70px]"
+              menu ? "top-[52vw] md:top-[70px]" : "top-[70px]"
             }`}
           >
             <h4 className="text-2xl sm:text-3xl pb-2 bg-gray-200 shadow-md dark:bg-teal-500 mt-0  text-center  ">
