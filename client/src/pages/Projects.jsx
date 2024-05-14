@@ -30,7 +30,7 @@ const Projects = ({ menu }) => {
   return (
     <div
       className={`relative min-h-screen ${
-        menu ? "top-[60vw] md:top-32 lg:top-32" : "top-32 md:top-32 lg:top-32"
+        menu ? "top-[65vw] md:top-32 lg:top-32" : "top-32 md:top-32 lg:top-32"
       } `}
     >
       <div className=" px-3  flex flex-col items-center justify-center">
