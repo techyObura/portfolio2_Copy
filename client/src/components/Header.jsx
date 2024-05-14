@@ -77,7 +77,12 @@ const Header = ({ menu, setMenu }) => {
             arrowIcon={false}
             inline
             label={
-              <Avatar alt={user.username} img={user.profilePhoto} rounded />
+              <Avatar
+                alt={user.username}
+                img={user.profilePhoto}
+                rounded
+                className=" object-cover object-top"
+              />
             }
           >
             <Dropdown.Header>

@@ -230,7 +230,7 @@ const DashProfile = () => {
           <img
             src={imageFileUrl || currentUser.profilePhoto}
             alt={currentUser.username}
-            className={`w-full h-full rounded-full object-cover object-top border-8 border-[lightgrey] ${
+            className={`w-full h-full rounded-full object-cover object-top sm:object-none border-8 border-[lightgrey] ${
               imageFileUploadingProgress &&
               imageFileUploadingProgress < 100 &&
               `opacity-60`
