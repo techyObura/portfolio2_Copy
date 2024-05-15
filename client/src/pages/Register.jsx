@@ -36,10 +36,11 @@ const Register = ({ menu }) => {
       });
       const data = await res.json();
       if (data.success === false) {
-        setLoading(null);
+        setLoading(false);
         return setErrorMessage(data.message);
+      } else {
+        setLoading(false);
       }
-      setLoading(false);
 
       if (res.ok) {
         navigate("/login");

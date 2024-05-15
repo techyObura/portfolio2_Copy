@@ -1,5 +1,5 @@
 const local = "http://localhost:7000";
 const render = "https://portfolio2-copy.onrender.com";
-const api = `${render}/api`;
+const api = `${local}/api`;
 
 export default api;

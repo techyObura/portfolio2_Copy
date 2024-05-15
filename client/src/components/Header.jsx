@@ -37,118 +37,120 @@ const Header = ({ menu, setMenu }) => {
   };
 
   return (
-    <Navbar className="border-b-2 whitespace-nowrap fixed top-0 z-40 w-full">
-      <Link
-        to={"/"}
-        className="self-center whitespace-nowrap text-3xl md:text-4xl font-semibold dark:text-white"
-      >
-        <span className="px-1 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg">
-          Alfred Ochieng
-        </span>{" "}
-      </Link>
-      <form>
-        <TextInput
-          type="text"
-          placeholder="Search"
-          rightIcon={GoSearch}
-          className="hidden md:inline"
-        />
-      </form>
-      <Button
-        className=" w-12 h-12 hidden justify-center items-center"
-        color={"gray"}
-        pill
-      >
-        <GoSearch size={20} />
-      </Button>
-      <div className="flex gap-2 md:order-2 justify-center items-center">
+    <div className="w-[100vw] whitespace-nowrap flex justify-center items-center flex-nowrap">
+      <Navbar className="border-b-2 whitespace-nowrap fixed top-0 z-40 w-[100vw]">
+        <Link
+          to={"/"}
+          className="self-center whitespace-nowrap text-3xl md:text-4xl font-semibold dark:text-white"
+        >
+          <span className="px-1 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg">
+            Alfred Ochieng
+          </span>{" "}
+        </Link>
+        <form>
+          <TextInput
+            type="text"
+            placeholder="Search"
+            rightIcon={GoSearch}
+            className="hidden "
+          />
+        </form>
         <Button
-          className=" w-12 h-10 md:h-12 flex justify-center items-center "
+          className=" w-12 h-12 hidden justify-center items-center"
           color={"gray"}
           pill
-          onClick={() => dispatch(toggleTheme())}
         >
-          <span className="md:text-lg md:px-3">
-            {theme === "light" ? <FaMoon /> : <FaSun />}
-          </span>
+          <GoSearch size={20} />
         </Button>
-        {user ? (
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={
-              <Avatar
-                alt={user.username}
-                img={user.profilePhoto}
-                rounded
-                className=" object-cover object-top"
-              />
-            }
+        <div className="flex gap-2 md:order-2 justify-center items-center">
+          <Button
+            className=" w-12 h-10 md:h-12 flex justify-center items-center "
+            color={"gray"}
+            pill
+            onClick={() => dispatch(toggleTheme())}
           >
-            <Dropdown.Header>
-              <span className="block text-sm">@{user.username}</span>
-              <span className="block text-sm font-medium truncate">
-                {user.email}
-              </span>
-            </Dropdown.Header>
-            <Link to={"/dashboard?tab=profile"}>
-              <Dropdown.Item>Profile</Dropdown.Item>
-            </Link>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
-          </Dropdown>
-        ) : (
-          <>
-            <Link to={"/login"}>
-              <Button gradientDuoTone={"purpleToBlue"} className="" outline>
-                <span className=" md:text-lg md:px-2"> Sign In</span>
-              </Button>
-            </Link>
-          </>
-        )}
-        <div onClick={() => setMenu(!menu)}>
-          <Navbar.Toggle />
+            <span className="md:text-lg md:px-3">
+              {theme === "light" ? <FaMoon /> : <FaSun />}
+            </span>
+          </Button>
+          {user ? (
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={
+                <Avatar
+                  alt={user.username}
+                  img={user.profilePhoto}
+                  rounded
+                  className=" object-cover object-top"
+                />
+              }
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">@{user.username}</span>
+                <span className="block text-sm font-medium truncate">
+                  {user.email}
+                </span>
+              </Dropdown.Header>
+              <Link to={"/dashboard?tab=profile"}>
+                <Dropdown.Item>Profile</Dropdown.Item>
+              </Link>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
+            </Dropdown>
+          ) : (
+            <>
+              <Link to={"/login"}>
+                <Button gradientDuoTone={"purpleToBlue"} className="" outline>
+                  <span className=" md:text-lg md:px-2"> Sign In</span>
+                </Button>
+              </Link>
+            </>
+          )}
+          <div onClick={() => setMenu(!menu)}>
+            <Navbar.Toggle />
+          </div>
         </div>
-      </div>
 
-      <Navbar.Collapse>
-        <Navbar.Link
-          active={path === "/"}
-          as={"div"}
-          onClick={() => setMenu(false)}
-        >
-          <Link to={"/"} className="text-lg" onClick={() => setMenu(false)}>
-            Home
-          </Link>
-        </Navbar.Link>
-        <Navbar.Link
-          active={path === "/about"}
-          as={"div"}
-          onClick={() => setMenu(false)}
-        >
-          <Link
-            to={"/about"}
-            className="text-lg"
+        <Navbar.Collapse>
+          <Navbar.Link
+            active={path === "/"}
+            as={"div"}
             onClick={() => setMenu(false)}
           >
-            About
-          </Link>
-        </Navbar.Link>
-        <Navbar.Link
-          active={path === "/projects"}
-          as={"div"}
-          onClick={() => setMenu(false)}
-        >
-          <Link
-            to={"/projects"}
-            className="text-lg"
+            <Link to={"/"} className="text-lg" onClick={() => setMenu(false)}>
+              Home
+            </Link>
+          </Navbar.Link>
+          <Navbar.Link
+            active={path === "/about"}
+            as={"div"}
             onClick={() => setMenu(false)}
           >
-            Projects
-          </Link>
-        </Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+            <Link
+              to={"/about"}
+              className="text-lg"
+              onClick={() => setMenu(false)}
+            >
+              About
+            </Link>
+          </Navbar.Link>
+          <Navbar.Link
+            active={path === "/projects"}
+            as={"div"}
+            onClick={() => setMenu(false)}
+          >
+            <Link
+              to={"/projects"}
+              className="text-lg"
+              onClick={() => setMenu(false)}
+            >
+              Projects
+            </Link>
+          </Navbar.Link>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 };
 
