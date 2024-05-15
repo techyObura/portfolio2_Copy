@@ -21,10 +21,10 @@ connectDB();
 //middleware
 app.use(express.json());
 
-/* app.use(credentials);
-app.use(cors(corsOptions)); */
+app.use(credentials);
+app.use(cors(corsOptions));
 
-app.use(function (req, res, next) {
+/* app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", [
@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
   ]);
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
-});
+}); */
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);

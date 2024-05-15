@@ -1,2 +1,2 @@
-const allowedOrigins = ["alfredochieng.netlify.ap", "*"];
+const allowedOrigins = ["https://alfredochieng.netlify.app"];
 export default allowedOrigins;
