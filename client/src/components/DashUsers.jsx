@@ -26,10 +26,6 @@ const DashUsers = () => {
         if (res.ok) {
           setUsers(data.users);
           setLoading(false);
-
-          if (data.users.length > 9) {
-            setShowMore(true);
-          }
         } else {
           setLoading(false);
         }
@@ -54,9 +50,6 @@ const DashUsers = () => {
 
       if (res.ok) {
         setUsers((prev) => [...prev, ...data.users]);
-        if (data.users.length > 9) {
-          setShowMore(true);
-        }
       }
     } catch (error) {
       console.log(error.message);
@@ -76,7 +69,6 @@ const DashUsers = () => {
         console.log(data.message);
       } else {
         setUsers((prev) => prev.filter((user) => user._id !== userIdDeleted));
-        window.location === "/dashboard?tab=users";
       }
     } catch (error) {
       console.log(error.message);
@@ -135,14 +127,14 @@ const DashUsers = () => {
               </Table.Body>
             ))}
           </Table>
-          {showMore && (
+          {/* {showMore && (
             <button
               onClick={handleShowMore}
               className="w-full text-teal-500 self-center text-sm py-5"
             >
               Show more...
             </button>
-          )}
+          )} */}
         </>
       ) : (
         <>
