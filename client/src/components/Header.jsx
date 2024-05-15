@@ -41,7 +41,7 @@ const Header = ({ menu, setMenu }) => {
       <Navbar className="border-b-2 whitespace-nowrap fixed top-0 z-40 w-[100vw]">
         <Link
           to={"/"}
-          className="self-center whitespace-nowrap text-3xl md:text-4xl font-semibold dark:text-white"
+          className="self-center whitespace-nowrap text-2xl sm:text-3xl md:text-4xl font-semibold dark:text-white"
         >
           <span className="px-1 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg">
             Alfred Ochieng

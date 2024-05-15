@@ -123,7 +123,7 @@ const Home = ({ menu }) => {
       ) : (
         <>
           <div className="flex flex-col gap-6 lg:p-28 p-3">
-            <h2 className="text-3xl font-bold lg:text-6xl">
+            <h2 className="text-xl sm:2xl md:3xl font-bold lg:text-6xl">
               Alfred Ochieng welcomes you to this page
             </h2>
             <p className=" text-gray-500 text-xs sm:text-sm">
